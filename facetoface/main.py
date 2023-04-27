@@ -1,9 +1,10 @@
+import random
+
 class Fruits:
     def __init__(self, name, t1, t2, t3, t4, t5):        
         self.__name = name
         self.__tips = [t1, t2, t3, t4, t5]
         self.__life = 5
-
 
     @property
     def name(self):
@@ -14,8 +15,12 @@ class Fruits:
         return self.__tips
     
     @property
-    def life():
+    def life(self):
         return self.__life
+
+    def lose_life(self):
+        self.__life -= 1
+
 
 banana = Fruits(name='Banana',  
                 t1='Yellow', 
@@ -39,4 +44,20 @@ blackberry = Fruits(name='Blackberry',
                 t5='Sour or So sweet.')
 
 
-#preciso criar alguma funçao para escolha aleatoria das frutas e sorteamento das dicas.
+
+objects = [blackberry, banana, apple]
+select_fruit = random.choice(objects)
+print(select_fruit.life)
+
+for i in range(select_fruit.life):
+    print(f"\nTIP: {select_fruit.tips[i]}")
+    print(f"LIFE: {select_fruit.life}")
+    user_option = input("\ninput what u think>> ").title()
+    if user_option != select_fruit.name:
+        select_fruit.lose_life()
+        print("\nYOU LOSE A LIFE!!")
+        print("please try again\n")
+    else:
+        print("CONGRATS!! YOU TAKE IT BRO!")
+        break
+        
