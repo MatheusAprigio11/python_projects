@@ -49,6 +49,16 @@ eminem = Singer(name='Eminem',
                 m4='Stan', 
                 m5='Lose Yourself') 
 
+natiruts = Singer(name='Natiruts',  
+                m1='Andei só', 
+                m2='Me namora', 
+                m3='Quero ser feliz também', 
+                m4='Sorri, sou rei', 
+                m5='Voce me encantou demais') 
 
-singer_objects = [drake, post_malone, eminem]
+
+
+
+singer_objects = [drake, post_malone, eminem, natiruts]
 select_singer = random.choice(singer_objects)
+
