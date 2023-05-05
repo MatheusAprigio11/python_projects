@@ -23,7 +23,21 @@ blackberry = Fruits(name='Blackberry',
                 t4='Usualy the color stains your hand', 
                 t5='Sour or So sweet.')
 
-fruit_objects = [blackberry, banana, apple]
+pineapple = Fruits(name='Pineapple',  
+                t1='its a acid fruit', 
+                t2='its yellow', 
+                t3='its difficult to peel', 
+                t4='some people eat this fruit wih cinnamon ', 
+                t5='has a crown')
+
+mango = Fruits(name='Mango',  
+                t1='has a pit', 
+                t2='its yellow and red', 
+                t3='has a "milk"', 
+                t4='some people eat this fruit wih salt ', 
+                t5='your tree is big')
+
+fruit_objects = [blackberry, banana, apple, pineapple, ]
 select_fruit = random.choice(fruit_objects)
 
 
@@ -54,11 +68,16 @@ natiruts = Singer(name='Natiruts',
                 m2='Me namora', 
                 m3='Quero ser feliz também', 
                 m4='Sorri, sou rei', 
-                m5='Voce me encantou demais') 
+                m5='Voce me encantou demais')
+
+tim_maia = Singer(name='Tim Maia',  
+                m1='Azul da cor do mar', 
+                m2='Me de motivo', 
+                m3='Gostava tanto de voce', 
+                m4='Que beleza', 
+                m5='Ela partiu')
 
 
 
-
-singer_objects = [drake, post_malone, eminem, natiruts]
+singer_objects = [drake, post_malone, eminem, natiruts, tim_maia]
 select_singer = random.choice(singer_objects)
-
