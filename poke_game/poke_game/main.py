@@ -77,12 +77,12 @@ def choose_pokemon():
     return poke
 
 
-choose_pokemon()
+#choose_pokemon()
 
 
 def poke_bot():
     pok_bot = random.choice(pokemons)
-    return pok_bot
+    return pok_bot #test
 
 # def gameplay(pokes, pok_bot):
 #     if choose_pokemon(pokes) < poke_bot(pok_bot):
