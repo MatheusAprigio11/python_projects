@@ -52,7 +52,7 @@ class Water(Pokemon):
         super().__init__(name , life, attack, velocity)
         self.water = water
 
-treeko = Plaint("Treeko", 40, 45, 70, Plaint)
+treeko = Plaint("Treeko", 40, 45, 70, Plaint) #OBJETO CRIANDO POKEMON
 moltres = Fire("Moltres", 90, 100, 90, Fire)
 lapras = Water("Lapras", 130, 85, 60, Water)
 
