@@ -14,7 +14,6 @@ class Pokemon:
     def name(self):
         return self.__name
     
-    
     @property
     def life(self):
         return self.__life
@@ -32,29 +31,38 @@ class Fire(Pokemon):
     """
     Classe filha, que está herdando de Pokemon e lhe dando um elemento
     """
-    def __init__(self, name, life, attack, velocity, fire):
+    def __init__(self, name, life, attack, velocity, type):
         super().__init__(name , life, attack, velocity)
-        self.fire = fire
+        self.tpye = type
+
+    def advantage(self, type):
+        if type == "Water":
+            return False
+        elif type == "Plaint":
+            return True
+        else:
+            ... #RANDINT
 
 class Plaint(Pokemon):
     """
     Classe filha, que está herdando de Pokemon e lhe dando um elemento
     """
-    def __init__(self, name, life, attack, velocity, plaint):
+    def __init__(self, name, life, attack, velocity, type):
         super().__init__(name , life, attack, velocity)
-        self.plaint = plaint
+        self.type = type
 
 class Water(Pokemon):
     """
     Classe filha, que está herdando de Pokemon e lhe dando um elemento
     """
-    def __init__(self, name, life, attack, velocity, water):
+    def __init__(self, name, life, attack, velocity, type):
         super().__init__(name , life, attack, velocity)
-        self.water = water
+        self.type = type
 
-treeko = Plaint("Treeko", 40, 45, 70, Plaint) #OBJETO CRIANDO POKEMON
-moltres = Fire("Moltres", 90, 100, 90, Fire)
-lapras = Water("Lapras", 130, 85, 60, Water)
+
+treeko = Plaint("Treeko", 40, 45, 70, "Plaint") #OBJETO CRIANDO POKEMON
+moltres = Fire("Moltres", 90, 100, 90, "Fire")
+lapras = Water("Lapras", 130, 85, 60, "Water")
 
 pokemons = [treeko.name, moltres.name, lapras.name]
 
@@ -77,12 +85,31 @@ def choose_pokemon():
     return poke
 
 
-#choose_pokemon()
+choose_pokemon()
 
 
 def poke_bot():
     pok_bot = random.choice(pokemons)
-    return pok_bot #test
+    match poke[pok_bot]:
+        case "Treeko":
+            poke = treeko
+        case "Moltres":
+            poke = moltres
+        case "Lapras":
+            poke = lapras
+    return pok_bot
 
-# def gameplay(pokes, pok_bot):
-#     if choose_pokemon(pokes) < poke_bot(pok_bot):
+
+def gameplay():
+    player_one = choose_pokemon()
+    player_bot = poke_bot()
+    print(player_one)
+    print(player_bot)
+    # if player_one.velocity < player_bot.velocity:
+    #     player_one.advantage(player_bot.type)
+
+
+
+gameplay()
+
+
