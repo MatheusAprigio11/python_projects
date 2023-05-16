@@ -84,25 +84,32 @@ def choose_pokemon():
             poke = lapras
     return poke
 
-
-choose_pokemon()
-
-
 def poke_bot():
     pok_bot = random.choice(pokemons)
-    match poke[pok_bot]:
-        case "Treeko":
-            poke = treeko
-        case "Moltres":
-            poke = moltres
-        case "Lapras":
-            poke = lapras
+    if pok_bot == treeko.name:
+        pok_bot = treeko
+    elif pok_bot == moltres.name:
+        pok_bot = moltres
+    elif pok_bot == lapras.name:
+        pok_bot = lapras
     return pok_bot
+
+def choose_mov():
+    
+
+
+
+
+
+
 
 
 def gameplay():
     player_one = choose_pokemon()
     player_bot = poke_bot()
+
+    if player_one.velocity < player_bot:
+        ...
     print(player_one)
     print(player_bot)
     # if player_one.velocity < player_bot.velocity:
@@ -111,5 +118,4 @@ def gameplay():
 
 
 gameplay()
-
-
+#SEPAIR THE CODE / FINISH THE LOGIC 
