@@ -1,6 +1,6 @@
 import random
 import inquirer
-
+from time import sleep
 
 class Pokemon:
     """
@@ -144,7 +144,6 @@ def choose_pokemon():
                       choices=[*name_pokemons],
                       ),
     ])
-    # return poke_selected['pokes']
     match poke_selected['pokes']:
         case "Treeko":
             poke = treeko
@@ -168,35 +167,50 @@ def poke_bot():
     return pok_bot
 
 
-def loose_hp(player_one, player_bot):
+def bot_loose_hp(player_one, player_bot):
     atk = player_one.advantage(player_bot.type, player_one.damage)
     attack_dmg = atk
-    print(atk)
+    print(f"ATQUE meu: {round(attack_dmg, 2)}")
     loose_hp_bot = player_bot.life - attack_dmg
     player_bot.life = loose_hp_bot
-    print(round(loose_hp_bot,2))
+    print(f"HP DO BOT: {round(loose_hp_bot,2)}")
 
-    return loose_hp_bot
+
+def me_loose_hp(player_bot, player_one):
+    atk = player_bot.advantage(player_one.type, player_bot.damage)
+    attack_dmg = atk
+    print(f"ATAQUE DO BOT{round(atk, 2)}")
+    loose_hp_me = player_one.life - attack_dmg
+    player_one.life = loose_hp_me
+    print(f"MEU HP: {round(loose_hp_me, 2)}")
+
+    return loose_hp_me
 
 
 def gameplay():
     player_one = choose_pokemon()
     player_bot = poke_bot()
     while player_one.life > 0 or player_bot.life > 0:
-        if player_one.velocity >= player_bot.velocity:
+        if player_one.velocity > player_bot.velocity:
             player_one.choose_mov()
-            # player_one.advantage(player_one.attack(player_one.damage))
             player_one.advantage(player_bot.type, player_one.damage)
-            loose_hp(player_one, player_bot)
-        else:
-            break
+            bot_loose_hp(player_one, player_bot)
+            sleep(2)
+            player_bot.advantage(player_one.type, player_bot.damage)
+            me_loose_hp(player_bot, player_one)
+            sleep(2)
+
+        elif player_one.velocity < player_bot.velocity:
+            player_bot.advantage(player_one.type, player_bot.damage)
+            me_loose_hp(player_bot, player_one)
+            sleep(2)
+            player_one.choose_mov()
+            player_one.advantage(player_bot.type, player_one.damage)
+            bot_loose_hp(player_one, player_bot)
+            sleep(2)
+
         if player_one.life <= 0 or player_bot.life <= 0:
             break
 
-    print(player_one)
-    print(player_bot)
-    print(player_one.mov)
-
 
 gameplay()
-# SEPAIR THE CODE / FINISH THE LOGIC
