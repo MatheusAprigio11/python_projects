@@ -53,16 +53,26 @@ class Fire(Pokemon):
         super().__init__(name, life, damage, velocity, mov)
         self.type = type
 
-    def advantage(type, damage):
+    def advantage(self, type, damage):
+        critical = damage * random.uniform(0.4, 0.5)
+        normal_atk = damage * random.uniform(0.15, 0.25)
+        wrong_atk = 0
+        atks = [critical, normal_atk, wrong_atk]
+        atks_dif_typ = [normal_atk, wrong_atk]
+
         if type == "Water":
-            damage = damage * 0.10
+            damage = random.choice(atks_dif_typ)
+            return damage
+        elif type == "Plaint":
+            damage = random.choice(atks)
             return damage
         else:
+            damage = random.choice(atks)
             return damage
 
-    def attack(self, bot_type):
-        damage = self.advantage(bot_type)
-        return damage
+    # def attack(self, bot_type, damage):
+    #     damage = self.advantage(bot_type, damage)
+    #     return damage
 
 
 class Plaint(Pokemon):
@@ -74,13 +84,21 @@ class Plaint(Pokemon):
         super().__init__(name, life, damage, velocity, mov)
         self.type = type
 
-    def advantage(type, damage):
+    def advantage(self, type, damage):
+        critical = damage * random.uniform(0.4, 0.5)
+        normal_atk = damage * random.uniform(0.15, 0.25)
+        wrong_atk = 0
+        atks = [critical, normal_atk, wrong_atk]
+        atks_dif_typ = [normal_atk, wrong_atk]
+
         if type == "Fire":
-            return False
-        elif type == "Water":  # grass
-            damage = damage * 0.10
+            damage = random.choice(atks_dif_typ)
+            return damage
+        elif type == "Water":
+            damage = random.choice(atks)
             return damage
         else:
+            damage = random.choice(atks)
             return damage
 
 
@@ -93,13 +111,21 @@ class Water(Pokemon):
         super().__init__(name, life, damage, velocity, mov)
         self.type = type
 
-    def advantage(type, damage):
+    def advantage(self, type, damage):
+        critical = damage * random.uniform(0.4, 0.5)
+        normal_atk = damage * random.uniform(0.15, 0.25)
+        wrong_atk = 0
+        atks = [critical, normal_atk, wrong_atk]
+        atks_dif_typ = [normal_atk, wrong_atk]
+
         if type == "Plaint":
-            pass
-        elif type == "Fire":  # grass
-            damage = damage * 0.10
+            damage = random.choice(atks_dif_typ)
+            return damage
+        elif type == "Fire":
+            damage = random.choice(atks)
             return damage
         else:
+            damage = random.choice(atks)
             return damage
 
 
@@ -143,11 +169,12 @@ def poke_bot():
 
 
 def loose_hp(player_one, player_bot):
-    atk = player_one.attack(player_one.damage)
+    atk = player_one.advantage(player_bot.type, player_one.damage)
+    attack_dmg = atk
     print(atk)
-    loose_hp_bot = player_bot.life - atk
+    loose_hp_bot = player_bot.life - attack_dmg
     player_bot.life = loose_hp_bot
-    print(loose_hp_bot)
+    print(round(loose_hp_bot,2))
 
     return loose_hp_bot
 
@@ -158,8 +185,8 @@ def gameplay():
     while player_one.life > 0 or player_bot.life > 0:
         if player_one.velocity >= player_bot.velocity:
             player_one.choose_mov()
-            player_one.advantage(player_one.attack(player_one.damage))
-            player_one.attack(player_bot.type)
+            # player_one.advantage(player_one.attack(player_one.damage))
+            player_one.advantage(player_bot.type, player_one.damage)
             loose_hp(player_one, player_bot)
         else:
             break
